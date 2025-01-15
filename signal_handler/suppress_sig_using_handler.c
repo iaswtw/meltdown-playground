@@ -15,7 +15,6 @@ static void unblock_signal(int signum)
     sigprocmask(SIG_UNBLOCK, &sigs, NULL);      // unblock/clear given signal
 }
 
-
 static void segfault_handler(int signum)
 {
     (void) signum;
@@ -28,30 +27,29 @@ static void segfault_handler(int signum)
     longjmp(buf, 1);
 }
 
-
-int main(int argc, char **argv) {
-
+int main(int argc, char **argv)
+{
     if (signal(SIGSEGV, segfault_handler) == SIG_ERR) {
         printf("Error setting up SEGV handler\n");
         exit(1);
     }
 
     // pointer to region we don't have access to
-    uint32_t * address = (uint32_t *) 0xFFFF880000000000;
+    uint32_t * address = (uint32_t *) 0xFFFF8800000;
 
-    // First attempt
+    // ----------- First attempt ------------
     uint32_t value = 100;
     if (setjmp(buf) == 0) {
         value = *address;
     }
-    printf("Value = %u\n", value);
+    printf("Value (1st attempt) = %u\n", value);
 
-
-    // Second attempt
+    // ----------- Second attempt ------------
     if (setjmp(buf) == 0) {
         value = *address;
     }
-    printf("Value = %u\n", value);
+    printf("Value (2nd attempt) = %u\n", value);
+
 
     // Restore default handling of signal
     signal(SIGSEGV, SIG_DFL);

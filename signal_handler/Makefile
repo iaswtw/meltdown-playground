@@ -11,7 +11,7 @@ BINARIES := suppress_sig_using_handler
 all: $(BINARIES)
 	
 %: %.c
-	$(CC) -o $@ $< -O0 
+	$(CC) -o $@ $< -O0 $(CFLAGS)
 
 
 clean:
