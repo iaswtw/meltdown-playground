@@ -3,3 +3,5 @@ access_forbidden/access_forbidden
 ts_counter/ts_counter
 signal_handler/suppress_sig_using_handler
 busy_work/busy_work
+meltdown/meltdown1
+check_tsx/check_tsx
