@@ -1,6 +1,6 @@
 CFLAGS += -g
 
-BINARIES := meltdown1
+BINARIES := meltdown1 detect_flush_reload_threshold
 
 all: $(BINARIES)
 	

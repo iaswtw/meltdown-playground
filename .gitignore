@@ -4,4 +4,5 @@ ts_counter/ts_counter
 signal_handler/suppress_sig_using_handler
 busy_work/busy_work
 meltdown/meltdown1
+meltdown/detect_flush_reload_threshold
 check_tsx/check_tsx
